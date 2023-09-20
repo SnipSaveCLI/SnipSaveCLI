@@ -22,6 +22,11 @@ The SnipSave CLI is written in python, therefore python 3.6 or greater is recomm
       - alias ssv='python3 ~/.snipsave/snipsave_cli.py' 
 3. Run `ssv configure` and enter your email and password when prompted
 
+## Running with Docker ##
+Docker provides an isolated environment to run the SnipSave CLI without the need to install its dependencies directly on your machine.
+1. Clone the repository
+2. docker build -t snipsave-cli .
+3. docker run -it snipsave-cli
 
 ## Commands ##
 All commands are preceded by `ssv`

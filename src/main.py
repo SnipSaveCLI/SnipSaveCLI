@@ -44,7 +44,7 @@ def login():
 
 
 
-def push(f, snippet_name):
+def push(f, snippet_name=None):
     myobj = login()
 
     try:
@@ -59,6 +59,7 @@ def push(f, snippet_name):
 
     # Put contents into object
     myobj["contents"] = snippet 
+    myobj["filename"] = f
     myobj["snippet_name"] = snippet_name
 
     # Send to SS
@@ -69,6 +70,8 @@ def push(f, snippet_name):
     if not resp_json["success"]:
         error_response(resp_json)    
         sys.exit(1)
+    if snippet_name == None:
+        snippet_name = f
     
     print("------------------------------")
     print()
@@ -144,7 +147,7 @@ if len(sys.argv) < 2:
 if (sys.argv[1] == "push"):
     # Check for no argv 2 || 3
     # Can have no arg3, but needs to match a snippet name
-    if (len(sys.argv) != 4 or len(sys.argv) != 3):
+    if (len(sys.argv) != 4 and len(sys.argv) != 3):
         print("Incorrect Usage of `ssv push`")
         print()
         print("Correct usage is:")
@@ -156,7 +159,10 @@ if (sys.argv[1] == "push"):
         print("Or use the command:\n`ssv help`")
         print()
     else:
-        push(sys.argv[2], sys.argv[3])
+        if (len(sys.argv) == 4):
+            push(sys.argv[2], sys.argv[3])
+        else:
+            push(sys.argv[2])
 elif (sys.argv[1] == "pull"):
     # Check for no/incorrect argv 2
     if (len(sys.argv) != 3):

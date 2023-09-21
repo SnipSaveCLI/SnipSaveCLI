@@ -118,6 +118,7 @@ def configure():
     config.close()
    
     payload = login()
+    print(payload)
     resp = requests.post("{}/cli/configure".format(URL), json = payload)
     resp_json = json.loads(resp.content)
     print()
@@ -143,11 +144,12 @@ if len(sys.argv) < 2:
 if (sys.argv[1] == "push"):
     # Check for no argv 2 || 3
     # Can have no arg3, but needs to match a snippet name
-    if (len(sys.argv) != 4):
+    if (len(sys.argv) != 4 or len(sys.argv) != 3):
         print("Incorrect Usage of `ssv push`")
         print()
         print("Correct usage is:")
-        print("ssv push <local_filename> <snippet_name>")
+        print("ssv push <local_filename> <snippet_name> or")
+        print("ssv push <local_filename>.extension")
         print()
         print(HELP_STRING)
         print()

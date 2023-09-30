@@ -28,6 +28,13 @@ Docker provides an isolated environment to run the SnipSave CLI without the need
 2. docker build -t snipsave-cli .
 3. docker run -it snipsave-cli
 
+## Running unittests
+1. follow steps to build docker image
+2. docker run -it snipsave-cli pytest /opt/tests
+
+tests can be run outside of docker with
+pytest ./src/tests
+
 ## Commands ##
 All commands are preceded by `ssv`
 

@@ -1,2 +1,4 @@
 requests
 getpass4
+pytest
+pytest-mock
